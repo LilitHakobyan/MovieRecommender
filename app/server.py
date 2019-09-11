@@ -10,7 +10,10 @@ path = Path(__file__).parent
 
 app = Starlette()
 app.mount('/static', StaticFiles(directory='app/static')
-
+          
+model_path = path/'models'
+learn = load_learner(model_path)  
+          
 @app.route('/')
 def index(request):
     html = path/'view'/'index.html'
