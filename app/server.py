@@ -5,16 +5,17 @@ from starlette.staticfiles import StaticFiles
 
 import uvicorn
 from fastai.vision import *
-
+path = Path(__file__).parent
 
 
 app = Starlette()
-model_path =  Path('storage/A_MOVIE_RECOMMMENDER/models')
+app.mount('/static', StaticFiles(directory='app/static')
+model_path =  path/'models'
 learn = load_learner(model_path)  
 
 @app.route('/')
 def index(request):   
-    html = 'storage/A_MOVIE_RECOMMMENDER/static/index.html'
+    html = path/'view'/'index.html'
     return HTMLResponse(html.open().read())
 
 if __name__ == "__main__":
