@@ -12,9 +12,10 @@ app = Starlette()
 app.mount('/static', StaticFiles(directory='app/static')
 
 @app.route('/')
-def index(request):   
+def index(request):
     html = path/'view'/'index.html'
     return HTMLResponse(html.open().read())
 
+
 if __name__ == "__main__":
-     uvicorn.run(app, host='0.0.0.0', port=8000)
+    if 'serve' in sys.argv: uvicorn.run(app, host='0.0.0.0', port=8080)
