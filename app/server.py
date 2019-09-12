@@ -2,7 +2,7 @@ from starlette.applications import Starlette
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.routing import Router, Mount
 from starlette.staticfiles import StaticFiles
-
+import os
 import uvicorn
 from fastai.vision import *
 path = Path(__file__).parent
@@ -11,7 +11,7 @@ path = Path(__file__).parent
 app = Starlette()
 app.mount('/static', StaticFiles(directory='app/static')
           
-model_path = path/'models'
+model_path = os.path.join(path,'models')
 learn = load_learner(model_path)  
           
 @app.route('/')
