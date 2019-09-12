@@ -9,7 +9,7 @@ path = Path(__file__).parent
 
 
 app = Starlette()
-app.mount('/static', StaticFiles(directory='app/static')
+app.mount('/static', StaticFiles(directory='app/static'))
           
 model_path = os.path.join(path,'models')
 learn = load_learner(model_path)  
